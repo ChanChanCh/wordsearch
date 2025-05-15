@@ -1,0 +1,259 @@
+/* Word Search 게임 페이지 스타일 */
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* 게임 헤더 */
+.game-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e3e9;
+}
+
+.game-description {
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 게임 타이머 */
+.game-timer {
+    background-color: #4b4b9d;
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1.2rem;
+}
+
+/* 게임 컨텐츠 레이아웃 */
+.game-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1.5rem;
+}
+
+/* 단어 목록 */
+.words-container {
+    padding: 1rem;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.words-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.word-item {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.word-item:hover {
+    background-color: #e9ecef;
+}
+
+.word-item.found {
+    text-decoration: line-through;
+    color: #6aaa64;
+    background-color: rgba(106, 170, 100, 0.1);
+}
+
+/* 게임 보드 */
+.board-container {
+    text-align: center;
+}
+
+.game-board {
+    display: inline-grid;
+    gap: 2px;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: auto;
+}
+
+.board-cell {
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 1px solid #e0e3e9;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s;
+}
+
+.board-cell:hover {
+    background: #f0f8ff;
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.board-cell.selected {
+    background: #4b4b9d;
+    color: white;
+    border-color: #4b4b9d;
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.board-cell.found {
+    background: #6aaa64;
+    color: white;
+    border-color: #6aaa64;
+}
+
+.word-message {
+    margin-top: 1rem;
+    height: 2rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.word-message.correct {
+    color: #6aaa64;
+}
+
+.word-message.wrong {
+    color: #ff3b30;
+}
+
+/* 현황판 */
+.leaderboard-container {
+    padding: 1rem;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.leaderboard {
+    margin-top: 1rem;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-item.top {
+    background-color: #fff8e1;
+    border-left: 4px solid #ffca28;
+}
+
+.leaderboard-item.self {
+    border-left: 4px solid #4b4b9d;
+}
+
+.leaderboard-rank {
+    font-weight: 700;
+    width: 2rem;
+    text-align: center;
+}
+
+.leaderboard-username {
+    flex-grow: 1;
+    padding: 0 0.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.leaderboard-score {
+    font-weight: 700;
+    color: #4b4b9d;
+}
+
+.leaderboard-time {
+    color: #666;
+    margin-left: 0.5rem;
+    font-size: 0.85rem;
+}
+
+/* 모달 */
+#username-modal .modal-content {
+    max-width: 400px;
+}
+
+#completion-modal .modal-content {
+    max-width: 500px;
+}
+
+.completion-stats {
+    background-color: #f5f7fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.stat:last-child {
+    margin-bottom: 0;
+}
+
+.stat-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.stat-value {
+    font-weight: 700;
+    color: #4b4b9d;
+}
+
+.completion-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* 반응형 */
+@media (max-width: 992px) {
+    .game-content {
+        grid-template-columns: 1fr 2fr;
+    }
+    
+    .leaderboard-container {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .leaderboard-container {
+        grid-column: span 1;
+    }
+    
+    .board-cell {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+}
