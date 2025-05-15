@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Search Maker</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/maker.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-left">
+                <a href="/" class="logo">Word Search</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/maker" class="active">Create Game</a></li>
+                    <li><a href="/games">My Games</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div id="auth-buttons">
+                    <button id="login-btn" class="btn">Login</button>
+                    <button id="signup-btn" class="btn btn-primary">Sign Up</button>
+                </div>
+                <div id="user-menu" class="hidden">
+                    <span id="username">User</span>
+                    <button id="logout-btn" class="btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="maker-container">
+                <h1>Create Your Word Search Game</h1>
+                <p class="intro-text">
+                    Design your own word search puzzle! Add a title, description, and at least 5 words.
+                    Share the generated link with friends to let them play your game.
+                </p>
+
+                <form id="game-form" class="maker-form">
+                    <div class="form-group">
+                        <label for="title">Game Title</label>
+                        <input type="text" id="title" name="title" required
+                               placeholder="Give your game a name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description (Optional)</label>
+                        <textarea id="description" name="description" rows="3"
+                                  placeholder="Add instructions or a theme for your game"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Words (5-20 words required)</label>
+                        <div id="words-container">
+                            <div class="word-input-group">
+                                <input type="text" class="word-input" placeholder="Enter a word" required>
+                                <button type="button" class="remove-word-btn" hidden>×</button>
+                            </div>
+                            <div class="word-input-group">
+                                <input type="text" class="word-input" placeholder="Enter a word" required>
+                                <button type="button" class="remove-word-btn" hidden>×</button>
+                            </div>
+                            <div class="word-input-group">
+                                <input type="text" class="word-input" placeholder="Enter a word" required>
+                                <button type="button" class="remove-word-btn" hidden>×</button>
+                            </div>
+                            <div class="word-input-group">
+                                <input type="text" class="word-input" placeholder="Enter a word" required>
+                                <button type="button" class="remove-word-btn" hidden>×</button>
+                            </div>
+                            <div class="word-input-group">
+                                <input type="text" class="word-input" placeholder="Enter a word" required>
+                                <button type="button" class="remove-word-btn" hidden>×</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-word-btn" class="btn btn-sm">+ Add Word</button>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="preview-btn" class="btn btn-secondary">Preview</button>
+                        <button type="submit" id="create-btn" class="btn btn-primary">Create Game</button>
+                    </div>
+                </form>
+
+                <div id="preview-container" class="hidden">
+                    <h2>Game Preview</h2>
+                    <div class="preview-board-container">
+                        <div id="preview-board" class="board"></div>
+                    </div>
+                    <div class="preview-words">
+                        <h3>Words to Find:</h3>
+                        <ul id="preview-words-list"></ul>
+                    </div>
+                    <button id="back-to-edit" class="btn">Back to Editing</button>
+                </div>
+
+                <div id="result-container" class="hidden">
+                    <h2>Game Created Successfully!</h2>
+                    <p>Your Word Search game has been created. Share this link with friends:</p>
+                    <div class="share-link-container">
+                        <input type="text" id="share-link" readonly>
+                        <button id="copy-link-btn" class="btn">Copy</button>
+                    </div>
+                    <div class="result-actions">
+                        <a href="/games" class="btn">View My Games</a>
+                        <a id="play-link" href="#" class="btn btn-primary">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Word Search Game. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 로그인 모달 -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="social-login">
+                    <p>Or login with:</p>
+                    <button type="button" id="google-login" class="btn btn-google">Google</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 회원가입 모달 -->
+    <div id="signup-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="signup-username">Username</label>
+                    <input type="text" id="signup-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../services/auth.js"></script>
+    <script src="../services/api.js"></script>
+    <script src="../scripts/maker.js"></script>
+</body>
+</html>
