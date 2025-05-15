@@ -24,7 +24,28 @@ Word Search 게임을 생성하고 플레이할 수 있는 웹 애플리케이�
 
 ## 데이터 모델 (ERD)
 
-(ERD 이미지 또는 설명 추가 예정)
++----------------+       +----------------+       +----------------+
+|      User      |       |      Game      |       | GameParticipant|
++----------------+       +----------------+       +----------------+
+| id (PK)        |       | id (PK)        |       | id (PK)        |
+| username       |------>| creator_id (FK)|       | game_id (FK)   |
+| email          |       | title          |<------| user_id (FK)   |
+| password_hash  |       | description    |       | username       |
+| created_at     |       | created_at     |       | score          |
+| is_active      |       | link_code      |       | completion_time|
++----------------+       +----------------+       | created_at     |
+                                |                 +----------------+
+                                |                         
+                                v                         
+                         +----------------+       
+                         |   GameWord     |       
+                         +----------------+       
+                         | id (PK)        |       
+                         | game_id (FK)   |       
+                         | word           |       
+                         | position_data  |       
+                         | created_at     |       
+                         +----------------+
 
 ## 설치 및 실행 방법
 
